@@ -259,15 +259,34 @@
 
     <!-- BOOK -->
     <section class="book" id="book">
-        <h1 class="heading">Send message <span>Enquiries?</span></h1>
+        <h1 class="heading" id="msg">Send message <span>Enquiries?</span></h1>
 
         <form action="">
-            <input type="text" placeholder="Name" class="box">
-            <input type="email" placeholder="Email" class="box">
-            <input type="number" placeholder="Number" class="box">
-            <textarea name="" placeholder="Message" class="box" id="" cols="30" rows="10"></textarea>
-            <input type="submit" value="send message" class="btn" >
+            <input type="text" name="Name" placeholder="Name" class="box">
+            <input type="email" name="Email" placeholder="Email" class="box">
+            <input type="tel" name="Number" placeholder="Number" class="box">
+            <textarea name="Message" placeholder="Message" class="box" id="" cols="30" rows="10"></textarea>
+            <input type="submit" value="send message" class="btn" id="sub">
         </form>
+        <script>
+            let form = document.querySelector("form");
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                document.querySelector("#sub").value = "Submiting..";
+                let data = new FormData(form);
+                fetch('https://script.google.com/macros/s/AKfycbzSfMwXn3sYj935z12DLqP1srD3P77wIXHjXgjfCxzG4Ez2znARtM5C45dQDkFlrC018w/exec', {
+                        method: "POST",
+                        body: data
+                    })
+                    .then(res => res.text())
+                    .then(data => {
+                        document.querySelector("#msg").innerHTML = data;
+                        document.querySelector("#sub").value = "Submit"
+
+                    });
+                    e.target.reset();
+            })
+        </script>
     </section>
 
     <!-- FOOTER -->
