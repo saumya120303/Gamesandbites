@@ -71,7 +71,7 @@ section {
 .gimages
 { transition: transform 0.3s ease-in-out;
     border: .3rem dashed rgb(130, 17, 17);
-    margin-left: 2rem;
+    margin-left: auto;
     padding: .1rem;
     margin-right: 2rem;
     flex: auto;
